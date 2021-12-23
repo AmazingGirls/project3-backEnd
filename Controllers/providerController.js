@@ -7,7 +7,6 @@ const { ServiceProvider } = require("../models/ServicesProvidersSchema");
 const getAllProvider = (req, res) => {
   ServiceProvider.find({ ServiceProvider })
     .then((ServiceProvider) => {
-      console.log("ServiceProvider");
       res.status(200).json(ServiceProvider);
     })
     .catch((err) => {

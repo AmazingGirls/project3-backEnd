@@ -18,7 +18,35 @@ const addNewService =  (req, res)=>{
 }
 
 const getAllServices = (req, res)=>{
-    res.send(Service)
-}
+  Service.find({ Service })
+    .then((Service) => {
+      res.status(200).json(Service);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    ;}
 
-module.exports = {addNewService, getAllServices}
+
+
+
+
+
+///////////////get one 
+const getOneService = (req, res) => {
+    const { name } = req.body;
+    Service.findOne({ name: name })
+      .then((Service) => {
+        if (Service) {
+          console.log(Service);
+          res.status(200).json(Service);
+        } else {
+          res.status(404).json("Service  Not Found ");
+          console.log(Service);
+
+        }
+        return res;
+      })
+      .catch((err) => console.error(err));
+  };
+module.exports = {addNewService, getAllServices,getOneService}
