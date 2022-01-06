@@ -35,19 +35,15 @@ const getUser = async (req, res)=>{
         if(compared){
             //generate the token
             //send token along with user info to front end
-            // console.log(compared)
             const payloud = {
                 userId: findUser._id,
                 role: findUser.role
             }
-            // console.log(payloud)
             const options = {
                 expiresIn: "4h"
             }
             const secret = process.env.SECRET
-            // console.log(secret)
             const token = jwt.sign(payloud, secret, options)
-            // console.log(token)
             
            return res.status(200).json({ token: token,user:findUser})
         }else{
